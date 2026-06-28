@@ -97,7 +97,7 @@ function AuthPage() {
                   <div className="pt-2 border-t mt-2 space-y-1">
                     <div className="text-xs text-muted-foreground">Demo accounts (password <code>Demo@1234</code>) — sign in as admin first, then run "Demo data → Run seed" to populate.</div>
                     <div className="flex flex-wrap gap-1">
-                      {["admin","advisor","hod","dean","vp","security","student1"].map((r) => (
+                      {["admin","advisor","warden","hod","dean","vp","security","student1"].map((r) => (
                         <button key={r} type="button" className="text-xs px-2 py-1 rounded border hover:bg-accent"
                           onClick={() => { setSiEmail(`${r}@smartleave.demo`); setSiPass("Demo@1234"); }}>
                           {r}
