@@ -3,11 +3,28 @@ import { supabase } from "@/integrations/supabase/client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
-import { Users, FileCheck, AlertTriangle, DoorOpen } from "lucide-react";
+import { Users, FileCheck, AlertTriangle, DoorOpen, Database } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useServerFn } from "@tanstack/react-start";
+import { seedDemoData, DEMO_CREDENTIALS } from "@/lib/seed.functions";
+import { toast } from "sonner";
 
 export function AdminDashboard() {
   const [stats, setStats] = useState({ users: 0, requests: 0, emergencies: 0, logs: 0 });
   const [users, setUsers] = useState<any[]>([]);
+  const [seeding, setSeeding] = useState(false);
+  const seed = useServerFn(seedDemoData);
+
+  async function runSeed() {
+    setSeeding(true);
+    try {
+      const res: any = await seed();
+      toast.success(`Seeded ${res.users} demo users + sample leaves`);
+      setTimeout(() => window.location.reload(), 800);
+    } catch (e: any) {
+      toast.error(e?.message ?? "Seed failed");
+    } finally { setSeeding(false); }
+  }
 
   useEffect(() => {
     (async () => {
@@ -36,6 +53,7 @@ export function AdminDashboard() {
         <TabsTrigger value="analytics">Analytics</TabsTrigger>
         <TabsTrigger value="users">Users</TabsTrigger>
         <TabsTrigger value="workflow">Workflow rules</TabsTrigger>
+        <TabsTrigger value="seed">Demo data</TabsTrigger>
       </TabsList>
       <TabsContent value="analytics">
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -78,6 +96,30 @@ export function AdminDashboard() {
               <li>AI-detected emergency → fast-track to advisor only</li>
             </ul>
             <p className="text-muted-foreground mt-2">Rules live in <code>src/lib/workflow.ts</code> and are easily extended.</p>
+          </CardContent>
+        </Card>
+      </TabsContent>
+      <TabsContent value="seed">
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2"><Database className="size-5" /> Seed demo data</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4 text-sm">
+            <p>Creates demo accounts (one per role), seeded profiles with CGPA & attendance, and a handful of sample leave requests at different approval stages.</p>
+            <Button onClick={runSeed} disabled={seeding}>
+              {seeding ? "Seeding…" : "Run seed"}
+            </Button>
+            <div>
+              <div className="font-medium mb-2">Demo credentials (password <code>Demo@1234</code>):</div>
+              <div className="grid sm:grid-cols-2 gap-2">
+                {DEMO_CREDENTIALS.map((c) => (
+                  <div key={c.email} className="border rounded p-2">
+                    <div className="font-mono text-xs">{c.email}</div>
+                    <div className="text-xs text-muted-foreground capitalize">{c.role} • {c.name}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </CardContent>
         </Card>
       </TabsContent>
