@@ -90,7 +90,8 @@ export function AdminDashboard() {
             <p>The system uses a rule-based engine that builds the approval chain dynamically per request:</p>
             <ul className="list-disc pl-6 space-y-1">
               <li>All requests start at <b>Advisor</b></li>
-              <li>Hostel residents → add <b>HOD</b></li>
+              <li>Hostel residents → add <b>Warden</b> before HOD</li>
+              <li>All requests → <b>HOD</b></li>
               <li>Placement-eligible students → add <b>Dean</b></li>
               <li>Final-year (year ≥ 4) → add <b>VP</b></li>
               <li>AI-detected emergency → fast-track to advisor only</li>

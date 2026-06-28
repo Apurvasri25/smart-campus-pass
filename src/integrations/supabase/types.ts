@@ -344,6 +344,7 @@ export type Database = {
         | "vp"
         | "security"
         | "admin"
+        | "warden"
       approval_action: "approve" | "reject" | "escalate"
       gate_direction: "exit" | "entry"
       leave_status:
@@ -487,6 +488,7 @@ export const Constants = {
         "vp",
         "security",
         "admin",
+        "warden",
       ],
       approval_action: ["approve", "reject", "escalate"],
       gate_direction: ["exit", "entry"],

@@ -5,7 +5,7 @@ type DemoUser = {
   email: string;
   password: string;
   full_name: string;
-  role: "student" | "advisor" | "hod" | "dean" | "vp" | "security" | "admin";
+  role: "student" | "advisor" | "warden" | "hod" | "dean" | "vp" | "security" | "admin";
   roll_number?: string;
   year?: number;
   department?: string;
@@ -19,6 +19,7 @@ type DemoUser = {
 const DEMO_USERS: DemoUser[] = [
   { email: "admin@smartleave.demo", password: "Demo@1234", full_name: "System Admin", role: "admin" },
   { email: "advisor@smartleave.demo", password: "Demo@1234", full_name: "Dr. Anita Rao", role: "advisor", department: "CSE" },
+  { email: "warden@smartleave.demo", password: "Demo@1234", full_name: "Mr. Vikram Singh", role: "warden", department: "Hostel" },
   { email: "hod@smartleave.demo", password: "Demo@1234", full_name: "Dr. Suresh Kumar", role: "hod", department: "CSE" },
   { email: "dean@smartleave.demo", password: "Demo@1234", full_name: "Dr. Meera Iyer", role: "dean", department: "Academics" },
   { email: "vp@smartleave.demo", password: "Demo@1234", full_name: "Prof. Ramesh Nair", role: "vp", department: "Administration" },

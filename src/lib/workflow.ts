@@ -9,7 +9,8 @@ export type ProfileLite = {
 export function buildWorkflow(profile: ProfileLite, isEmergency: boolean): AppRole[] {
   if (isEmergency) return ["advisor"];
   const chain: AppRole[] = ["advisor"];
-  if (profile.hostel_resident) chain.push("hod");
+  if (profile.hostel_resident) chain.push("warden");
+  chain.push("hod");
   if (profile.placement_eligible) chain.push("dean");
   if ((profile.year ?? 0) >= 4) chain.push("vp");
   return chain;

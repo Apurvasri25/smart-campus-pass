@@ -20,7 +20,7 @@ function DashboardPage() {
     <AppShell>
       {role === "student" && <StudentDashboard />}
       {role === "advisor" && <AdvisorDashboard />}
-      {(role === "hod" || role === "dean" || role === "vp") && <StaffDashboard role={role} />}
+      {(role === "warden" || role === "hod" || role === "dean" || role === "vp") && <StaffDashboard role={role} />}
       {role === "security" && <SecurityDashboard />}
       {role === "admin" && <AdminDashboard />}
     </AppShell>

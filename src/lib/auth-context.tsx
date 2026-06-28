@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useState, type ReactNode } from "
 import type { Session, User } from "@supabase/supabase-js";
 import { supabase } from "@/integrations/supabase/client";
 
-export type AppRole = "student" | "advisor" | "hod" | "dean" | "vp" | "security" | "admin";
+export type AppRole = "student" | "advisor" | "warden" | "hod" | "dean" | "vp" | "security" | "admin";
 
 type AuthCtx = {
   user: User | null;
@@ -72,7 +72,7 @@ export function useAuth() {
 }
 
 export function primaryRole(roles: AppRole[]): AppRole {
-  const priority: AppRole[] = ["admin", "vp", "dean", "hod", "advisor", "security", "student"];
+  const priority: AppRole[] = ["admin", "vp", "dean", "hod", "warden", "advisor", "security", "student"];
   for (const r of priority) if (roles.includes(r)) return r;
   return "student";
 }
