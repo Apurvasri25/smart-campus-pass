@@ -120,6 +120,7 @@ function AuthPage() {
                       <SelectContent>
                         <SelectItem value="student">Student</SelectItem>
                         <SelectItem value="advisor">Advisor</SelectItem>
+                        <SelectItem value="warden">Hostel Warden</SelectItem>
                         <SelectItem value="hod">HOD</SelectItem>
                         <SelectItem value="dean">Dean</SelectItem>
                         <SelectItem value="vp">VP</SelectItem>
